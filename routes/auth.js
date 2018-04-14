@@ -60,5 +60,23 @@ router.get('/playlist', function(req,res,next){
     })
 });
 
+router.get('/track', function(req,res,next){    
+    spotifyApi.getTrack(req.query.id).then(function(data){        
+        res.send({data : data});
+    }, function(err){
+        console.log('Something went wrong!', err);
+    })
+});
+
+router.get('/trackAudioFeatures', function(req,res,next){    
+    spotifyApi.getAudioFeaturesForTrack(req.query.id).then(function(data){        
+        res.send({data : data});
+    }, function(err){
+        console.log('Something went wrong!', err);
+    })
+});
+
+
+
 
 module.exports = {router : router};
